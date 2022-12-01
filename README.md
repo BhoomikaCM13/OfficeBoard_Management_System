@@ -11,7 +11,7 @@
 •	Comments option for the tasks.
 
  
- SOFTWARE SPECIFICATIONS:
+ # SOFTWARE SPECIFICATIONS:
   
               Front-end	     |          Back-end	        |      Database 
 ---------------------------------------------------------------------------------------
