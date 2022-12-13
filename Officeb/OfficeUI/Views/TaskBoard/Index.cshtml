@@ -3,9 +3,11 @@
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
-<div style="align-items:end">
-    <a asp-controller="Task" asp-action="Index" asp-route-Id="@Model.task.id"><i class="fa-solid fa-arrow-left" style="color:darkslateblue">&nbsp back</i></a>
-
+<div class="row responsive">
+    <div style="align-items:end" class="col-2" >
+        <a asp-controller="Task" asp-action="Index" class="btn  btn-user btn-block my-4"><i class="fa-solid fa-arrow-left" style="color:darkslateblue">&nbsp back</i></a>
+       
+    </div>
 </div>
 
 <!-- Topbar -->
@@ -24,10 +26,11 @@
               <div class="card-header">
                     <p class="text-lg" style="display: inline;"><strong>@Model.task.title</strong></p>
                     <!-- Circle Buttons (Small) -->
-                    <div  style="display: inline;">
+                  @*  <div  style="display: inline;">
+                        
                         <a asp-controller="Task" asp-action="EditTasks" asp-route-Id="@Model.task.id"><i class="fa-solid fa-pen-to-square" style="color:mediumorchid" title="Edit"></i></a>
                         <a asp-controller="Task" asp-action="DeleteTasks" asp-route-Id="@Model.task.id"><i class="fa-solid fa-trash" style="color:red" title="Delete"></i></a>
-                    </div>
+                    </div>*@
               </div>
                 <div class="card-body">
                     <p class="text-lg" style="display: inline;"><strong>@Model.task.description</strong></p>
@@ -86,8 +89,12 @@
                                     <strong>@item.createdOn</strong>
                                 </small>                                
                             </p>
-                            <a asp-controller="Comment" asp-action="EditComment" asp-route-Id="@item.id"><i class="fa-solid fa-pen-to-square" style="color:mediumorchid" title="Edit"></i></a>
-                            <a asp-controller="Comment" onclick="Myfunction()" asp-action="DeleteComment" asp-route-commentid="@item.id"><i class="fa-solid fa-trash" style="color:darkmagenta" title="Delete"></i></a>
+                            @if (item.profileId == Convert.ToInt32(TempData["LoginID"]))
+                            {
+                                TempData.Keep();
+                                <a asp-controller="Comment" asp-action="EditComment" asp-route-Id="@item.id"><i class="fa-solid fa-pen-to-square" style="color:mediumorchid" title="Edit"></i></a>
+                                <a asp-controller="Comment" onclick="Myfunction()" asp-action="DeleteComment" asp-route-commentid="@item.id"><i class="fa-solid fa-trash" style="color:darkmagenta" title="Delete"></i></a>
+                            }
                         </div>
                     </div>
                 </div>
@@ -121,7 +128,7 @@
 
                         <div class="row">
                             <div class="col-6">
-                                <input type="submit" value="Create" onclick="Myfunction2()" class="btn btn-success btn-user btn-block my-4" />
+                                <input type="submit" value="Create" onclick="Myfunction2()" class="btn btn-user btn-block my-4"  style="background-color:mediumslateblue; color:white" >
                             </div>
                             <div class="col-6">
                                 <input type="reset" value="Cancel" class="btn btn-outline-danger btn-user btn-block my-4" />

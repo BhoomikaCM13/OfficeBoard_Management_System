@@ -42,8 +42,6 @@ namespace OfficeUI.Controllers
             {
                 projects = projects.Where(c => c.title.Contains(searchtitle));
             }
-
-
             return View(projects); 
 
         }
@@ -51,6 +49,8 @@ namespace OfficeUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            Profile a = new Profile();
+            
            
             IEnumerable<Message> messageresult = null;
             
@@ -86,21 +86,40 @@ namespace OfficeUI.Controllers
                     messages.Add(message);
                 }
             }
+            
             return View(messages);
         }
 
         //Used for getting the LoadAll Implementation
-        public ActionResult Index1(int a)
+        public async Task<IActionResult> Index1(int a)
         {
-            TempData["load"] = 2;
-            int num = Convert.ToInt32(TempData["load"]) + Convert.ToInt32(TempData["countofmessage"]) - 2;
-            TempData.Keep();
-            var projects = from pr in db.messages.
-                           Include(obj => obj.Profile
-                           ).Take(num)
-                           select pr;
-            TempData["load"] = num;
-            return View(projects);
+
+            IEnumerable<Message> messageresult = null;
+
+            using (HttpClient client = new HttpClient())
+            {
+                // Created a view to get Message:
+
+                string endPoint = _configuration["WebApiBasedUrl"] + "Message/GetMessages";
+                using (var response = await client.GetAsync(endPoint))
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+                        messageresult = JsonConvert.DeserializeObject<IEnumerable<Message>>(result);
+                    }
+
+                }
+            }
+            //TempData["load"] = 2;
+            //int num = Convert.ToInt32(TempData["load"]) + Convert.ToInt32(TempData["countofmessage"]) - 2;
+            //TempData.Keep();
+            //var projects = from pr in db.messages.
+            //               Include(obj => obj.Profile
+            //               ).Take(num)
+            //               select pr;
+            //TempData["load"] = num;
+            return View(messageresult);
         }
 
         //Creating a View to Add Message
@@ -144,6 +163,9 @@ namespace OfficeUI.Controllers
         }
         public async Task<IActionResult> Edit(int id)
         {
+
+            int Id = Convert.ToInt32(TempData["LoginID"]);
+            TempData.Keep();
             Message message = null;
             using (HttpClient client = new HttpClient())
             {
@@ -165,6 +187,7 @@ namespace OfficeUI.Controllers
                     }
                 }
             }
+            
             return View(message);
         }
 

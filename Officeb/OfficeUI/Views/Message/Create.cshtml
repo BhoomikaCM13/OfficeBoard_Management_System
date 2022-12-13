@@ -5,8 +5,12 @@
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
-
-
+<div class="row responsive">
+    <div style="align-items:end" class="col-2" >
+        <a asp-controller="Message" asp-action="Index" class="btn  btn-user btn-block my-4"><i class="fa-solid fa-arrow-left" style="color:darkslateblue">&nbsp back</i></a>
+       
+    </div>
+</div>
 <form method="post" enctype="multipart/form-data">
 <!-- Begin Page Content -->
 <div class="container-fluid mt-4">
@@ -32,7 +36,7 @@
                            
                             <div class="row">
                                 <div class="col-6">
-                                        <input type="submit" value="Create" class="btn  btn-user btn-block my-4" style="background-color:mediumslateblue; color:white" />                                     
+                                        <input type="submit" value="Create" class="btn  btn-user btn-block my-4" style="background-color:mediumslateblue; color:white"/>                                     
                                 </div>
                                 <div class="col-6">
                                        
@@ -60,3 +64,13 @@
         </div>
     }
 </form>
+@*
+<script>
+    function Sweetalert()
+    {
+        swal("Click on either the button or outside the modal.")
+            .then((value) => {
+                swal(`The returned value is: ${value}`);
+            });
+    }
+</script>*@

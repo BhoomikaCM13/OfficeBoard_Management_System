@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OfficeDL;
 
-namespace OfficeDL.Migrations
+namespace OfficeData.Migrations
 {
     [DbContext(typeof(Office_Context))]
-    [Migration("20221201102605_all")]
-    partial class all
+    [Migration("20221209085939_theoffice1")]
+    partial class theoffice1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,6 +54,30 @@ namespace OfficeDL.Migrations
                     b.HasIndex("taskId");
 
                     b.ToTable("comments");
+                });
+
+            modelBuilder.Entity("OfficeEntity.Contactus", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("phone")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("contact");
                 });
 
             modelBuilder.Entity("OfficeEntity.Dashboard", b =>

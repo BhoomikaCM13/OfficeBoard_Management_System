@@ -1,12 +1,28 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace OfficeDL.Migrations
+namespace OfficeData.Migrations
 {
-    public partial class all : Migration
+    public partial class theoffice1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "contact",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    phone = table.Column<int>(type: "int", nullable: false),
+                    email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    message = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_contact", x => x.id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "dashBoards",
                 columns: table => new
@@ -205,6 +221,9 @@ namespace OfficeDL.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_comments_taskBoards_TaskBoardid",
                 table: "comments");
+
+            migrationBuilder.DropTable(
+                name: "contact");
 
             migrationBuilder.DropTable(
                 name: "dashBoards");

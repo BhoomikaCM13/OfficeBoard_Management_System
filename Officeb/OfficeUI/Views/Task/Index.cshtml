@@ -45,9 +45,13 @@
                                    </p>
                                    <div  style="display: inline;">
                                         <a asp-controller="TaskBoard" asp-action="Index" asp-route-taskId=@items.id><i class="fa-solid fa-circle-info" style="color:mediumslateblue; height:2px "> </i> </a>&nbsp;
-                                        <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@items.id> <i class="fa-solid fa-pen-to-square" style="color:mediumorchid"></i></a>&nbsp;
-                                        <a asp-controller="Task" onclick="Myfunction()" asp-action="DeleteTasks" asp-route-taskId=@items.id> <i class="fa-solid fa-trash" style="color:darkmagenta"></i></a>
-                                   </div>
+                                        @if (items.profileId == Convert.ToInt32(TempData["LoginID"]))
+                                        {
+                                            TempData.Keep();
+                                            <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@items.id> <i class="fa-solid fa-pen-to-square" style="color:mediumorchid"></i></a>  
+                                            <a asp-controller="Task" onclick="Myfunction()" asp-action="DeleteTasks" asp-route-taskId=@items.id> <i class="fa-solid fa-trash" style="color:darkmagenta"></i></a>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                        </div>
@@ -86,9 +90,14 @@
 
                                      <div *ngIf="currentUser.id == message.userId" style="display: inline;">
                                         <a asp-controller="TaskBoard" asp-action="Index" asp-route-taskId=@second.id><i class="fa-solid fa-circle-info" style="color:mediumslateblue; height:2px "> </i> </a>&nbsp;
-                                        <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@second.id> <i class="fa-solid fa-pen-to-square" style="color:mediumorchid"></i></a> &nbsp;
-                                        <a asp-controller="Task" onclick="Myfunction()" asp-action="DeleteTasks" asp-route-taskId=@second.id> <i class="fa-solid fa-trash" style="color:darkmagenta"></i></a>
-                                     </div>
+                                        @if (second.profileId == Convert.ToInt32(TempData["LoginID"]))
+                                        {
+                                            TempData.Keep();
+                                            <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@second.id> <i class="fa-solid fa-pen-to-square" style="color:mediumorchid"></i></a>
+
+                                            <a asp-controller="Task" onclick="Myfunction()" asp-action="DeleteTasks" asp-route-taskId=@second.id> <i class="fa-solid fa-trash" style="color:darkmagenta"></i></a>
+                                        } 
+                                    </div>
                            
                                    </div>
                                 </div>
@@ -128,10 +137,16 @@
                                     </p>
 
                                     <div style="display: inline;">
+                                       
                                         <a asp-controller="TaskBoard" asp-action="Index" asp-route-taskId=@third.id><i class="fa-solid fa-circle-info" style="color:mediumslateblue; height:2px "> </i> </a>&nbsp;
-                                        <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@third.id> <i class="fa-solid fa-pen-to-square" style="color:mediumorchid"></i></a>&nbsp;
-                                         
-                                        <a asp-controller="Task" onclick="Myfunction()" asp-action="DeleteTasks" asp-route-taskId=@third.id> <i class="fa-solid fa-trash" style="color:darkmagenta"></i></a>
+                                        @if (third.profileId == Convert.ToInt32(TempData["LoginID"]))
+                                        {
+                                            TempData.Keep();
+                                            <a asp-controller="Task" asp-action="EditTasks" asp-route-taskId=@third.id> <i class="fa-solid fa-pen-to-square" style="color:mediumorchid"></i></a>
+
+
+                                            <a asp-controller="Task" onclick="Myfunction()" asp-action="DeleteTasks" asp-route-taskId=@third.id> <i class="fa-solid fa-trash" style="color:darkmagenta"></i></a>
+                                        } 
                                     </div>
                           
                                  </div>

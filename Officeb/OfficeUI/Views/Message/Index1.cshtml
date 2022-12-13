@@ -16,7 +16,7 @@
     <p>
         <form method="post">
             Title &nbsp;@Html.TextBox("searchtitle")
-            <button asp-action="Index" asp-controller="Message" asp-route-searchtitle=@Html.TextBox("searchtitle")>Search</button>
+            <button asp-action="Index" asp-controller="Messagew" asp-route-searchtitle=@Html.TextBox("searchtitle")>Search</button>
            
         </form>
     </p>
@@ -33,8 +33,12 @@
                         &nbsp;
                         <!-- Circle Buttons (Small) -->
                         <div style="display: inline;">
-                            <a asp-controller="Message" asp-action="Edit" asp-route-Id=@message.id><i class="fa-solid fa-pen-to-square" style="color:mediumorchid" title="Edit"></i></a>&nbsp;
+                            @if (message.pId == Convert.ToInt32(TempData["LoginID"]))
+                            {
+                                TempData.Keep();
+                            <a asp-controller="Message" asp-action="Edit" asp-route-Id=@message.id><i class="fa-solid fa-pen-to-square" style="color:mediumorchid" title="Edit"></i></a>
                             <a asp-controller="Message" onclick="MyDelete()" asp-action="Delete" asp-route-Id=@message.id><i class="fa-solid fa-trash" style="color:darkmagenta" title="Delete"></i></a>
+                            }
                         </div>
                     </div>
                 </div>

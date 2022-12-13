@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using OfficeDL.Repository;
 using OfficeEntity;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,12 @@ namespace OfficeUI.Controllers
         private IConfiguration configuration;
         Tasks task = new Tasks();
         Comment comment = new Comment();
+        private CommentRepository commentRepository;
         public CommentController(IConfiguration configuration)
         {
             this.configuration = configuration;
         }
+       
         [HttpGet]
         public async Task<IActionResult> Index()
         {

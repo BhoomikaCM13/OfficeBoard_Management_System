@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using OfficeBusiness.Services;
+using OfficeData.Repository;
 using OfficeDL;
 using OfficeDL.Repository;
 using System;
@@ -46,6 +47,8 @@ namespace ProfileAPI
 
             });
             services.AddTransient<Profileservice, Profileservice>();
+            services.AddTransient<ContactService, ContactService>();
+            services.AddTransient<IContactRepository, ContactRepository>();
             services.AddTransient<TaskService,TaskService>();
             services.AddTransient<ITaskRepository, TaskRepository>();
             services.AddTransient<IProfileRepository, ProfileRepository>();

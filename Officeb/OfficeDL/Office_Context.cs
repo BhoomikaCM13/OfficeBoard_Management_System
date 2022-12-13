@@ -26,10 +26,11 @@ namespace OfficeDL
         public DbSet<Dashboard> dashBoards { get; set; }
         public DbSet<TaskBoard> taskBoards { get; set; }
 
+        public DbSet<Contactus> contact { get; set; }
         // SQL Connection:
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
-            dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2235;Initial Catalog = Office_Board;Integrated Security = True;");
+            dbContextOptionsBuilder.UseSqlServer("Data Source=VDC01LTC2235;Initial Catalog = TheOffice1;Integrated Security = True;");
         }
     }
 }

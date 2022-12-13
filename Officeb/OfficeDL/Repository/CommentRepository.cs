@@ -16,7 +16,10 @@ namespace OfficeDL.Repository
             _OfficeDbcontext = context;
         }
 
-     
+        public CommentRepository()
+        {
+        }
+
         public void AddComment(Comment comment)
         {
             #region ADD COMMENT

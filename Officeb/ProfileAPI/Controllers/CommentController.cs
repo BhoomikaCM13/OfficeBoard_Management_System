@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OfficeBusiness.Services;
+using OfficeDL.Repository;
 using OfficeEntity;
+using System;
 using System.Collections.Generic;
 
 namespace OfficeAPI.Controllers
@@ -11,11 +13,11 @@ namespace OfficeAPI.Controllers
     public class CommentController : ControllerBase
     {
         private CommentService _commentService;
+
         public CommentController(CommentService commentService)
         {
             _commentService = commentService;
         }
-
 
         [HttpGet("GetComments")]
         public IEnumerable<Comment> GetComments()

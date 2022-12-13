@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OfficeDL;
 
-namespace OfficeDL.Migrations
+namespace OfficeData.Migrations
 {
     [DbContext(typeof(Office_Context))]
     partial class Office_ContextModelSnapshot : ModelSnapshot
@@ -52,6 +52,30 @@ namespace OfficeDL.Migrations
                     b.HasIndex("taskId");
 
                     b.ToTable("comments");
+                });
+
+            modelBuilder.Entity("OfficeEntity.Contactus", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("phone")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("contact");
                 });
 
             modelBuilder.Entity("OfficeEntity.Dashboard", b =>

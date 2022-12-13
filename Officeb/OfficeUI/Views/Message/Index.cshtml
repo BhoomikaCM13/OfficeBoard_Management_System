@@ -29,10 +29,17 @@
                 <div class="card-title">                       
                     <h6 class="m-0 font-weight-bold text" style="display: inline;color:mediumslateblue">@message.title</h6>
                             &nbsp;
-                    <div style="display: inline;">                           
-                            <a asp-controller="Message" asp-action="Edit" asp-route-Id=@message.id><i class="fa-solid fa-pen-to-square" style="color:mediumorchid" title="Edit"></i></a>&nbsp;
-                            <a asp-controller="Message" onclick="MyDelete()" asp-action="Delete" asp-route-Id=@message.id><i class="fa-solid fa-trash" style="color:darkmagenta" title="Delete"></i></a>
-                    </div>
+                    <div style="display: inline;"> 
+                         
+                            @if (message.pId == Convert.ToInt32(TempData["LoginID"]))
+                            {
+                                TempData.Keep();
+                                <a asp-controller="Message" asp-action="Edit" asp-route-Id=@message.id><i class="fa-solid fa-pen-to-square" style="color:mediumorchid" title="Edit"></i></a>
+                             
+                                <a asp-controller="Message" onclick="MyDelete()" asp-action="Delete" asp-route-Id=@message.id><i class="fa-solid fa-trash" style="color:darkmagenta" title="Delete"></i></a>
+                            }
+                        </div>
+
                 </div>
             </div>
            
@@ -56,14 +63,17 @@
                
 </div>
 }
-
-<div class="mb-4 ml-4">
-     <form method="post">    
-       <a>            
-           <a asp-controller="message" asp-action="index1" class="btn" style="background-color:mediumslateblue; color:white">Load All</a>
-       </a>
-     </form>
-</div>
+@if (Convert.ToInt32(TempData["countofmessage"]) > 2)
+{
+    TempData.Keep();
+    <div class="mb-4 ml-4">
+        <form method="post">    
+            <a>            
+                <a asp-controller="message" asp-action="index1" class="btn" style="background-color:mediumslateblue; color:white">Load All</a>
+            </a>
+        </form>
+    </div>
+}
 
 
 
