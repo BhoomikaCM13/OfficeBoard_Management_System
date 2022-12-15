@@ -1,6 +1,4 @@
 ﻿@model OfficeEntity.Contactus
-
-
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -43,7 +41,7 @@
                                     <textarea class="form-control" asp-for="message" rows="12" placeholder="Enter message" required ></textarea>
                                 </div>
                                 <div>
-                                <input type="submit" value="Create"  onClick="UserContact()" class="btn  btn-user btn-block my-4" style="background-color:mediumslateblue; color:white" />
+                                <input type="submit" value="Create" onClick="UserContact()" class="btn  btn-user btn-block my-4" style="background-color:mediumslateblue; color:white" />
                                 </div>
                             </form>
                             </div>
@@ -70,9 +68,13 @@
 <script>
     function UserContact() 
     {
-
-        alert("Thank you! We will get back soon...");
-
+        if ( != null) {
+        alert("Thank you!.It saved,We will get back soon...");
+        }
+        else 
+        {
+        alert("fill details properly");
+        }
     
     }
 </script>

@@ -26,11 +26,12 @@
               <div class="card-header">
                     <p class="text-lg" style="display: inline;"><strong>@Model.task.title</strong></p>
                     <!-- Circle Buttons (Small) -->
-                  @*  <div  style="display: inline;">
-                        
-                        <a asp-controller="Task" asp-action="EditTasks" asp-route-Id="@Model.task.id"><i class="fa-solid fa-pen-to-square" style="color:mediumorchid" title="Edit"></i></a>
-                        <a asp-controller="Task" asp-action="DeleteTasks" asp-route-Id="@Model.task.id"><i class="fa-solid fa-trash" style="color:red" title="Delete"></i></a>
-                    </div>*@
+
+
+
+
+
+
               </div>
                 <div class="card-body">
                     <p class="text-lg" style="display: inline;"><strong>@Model.task.description</strong></p>
@@ -48,7 +49,7 @@
                         </small> |
                         <small class="text-muted">
                             Created By:
-                            <a routerLink="/profile/user/{{task?.userId}}"><strong>@Model.task.profile.name</strong></a>
+                          <strong>@Model.task.profile.name</strong>
                         </small> <br>
                         <small class="text-muted">Comments: <strong>@Model.countMessage</strong></small>
                         <br /> 
@@ -82,7 +83,7 @@
                             <p>
                                 <small class="text-muted">
                                     Author:
-                                    <a><strong>@item.profile.name</strong></a>
+                                   <strong>@item.profile.name</strong>
                                 </small> |
                                 <small class="text-muted">
                                     Created On:
@@ -106,9 +107,9 @@
 
 
 
-
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!--To Add new Comments-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -123,7 +124,7 @@
                     <form method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Content</label>
-                            <textarea class="form-control" asp-for="comment" rows="8" placeholder="Enter Content"></textarea>
+                            <textarea class="form-control" asp-for="comment" rows="8" placeholder="Enter Content" required></textarea>
                         </div>
 
                         <div class="row">
@@ -150,7 +151,7 @@
                 </div>
             </div>
         </div>
-    </div>
+   </div>
 
 <script>
     function Myfunction() {

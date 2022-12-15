@@ -33,7 +33,7 @@ namespace OfficeUI.Controllers
         {
             //MessageBoard Search Bar by message title 
 
-            var projects = from pr in db.messages.
+            var projects = from pr in db.messages.OrderByDescending(obj=>obj.createdOn).
                            Include(obj => obj.Profile
                            )
                            select pr;
@@ -65,6 +65,7 @@ namespace OfficeUI.Controllers
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         messageresult = JsonConvert.DeserializeObject<IEnumerable<Message>>(result);
+                        messageresult=messageresult.Reverse();
                     }
                     TempData["countofmessage"] = messageresult.Count();
                     TempData.Keep();
@@ -107,18 +108,12 @@ namespace OfficeUI.Controllers
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         messageresult = JsonConvert.DeserializeObject<IEnumerable<Message>>(result);
+                        messageresult = messageresult.Reverse();
                     }
 
                 }
             }
-            //TempData["load"] = 2;
-            //int num = Convert.ToInt32(TempData["load"]) + Convert.ToInt32(TempData["countofmessage"]) - 2;
-            //TempData.Keep();
-            //var projects = from pr in db.messages.
-            //               Include(obj => obj.Profile
-            //               ).Take(num)
-            //               select pr;
-            //TempData["load"] = num;
+          
             return View(messageresult);
         }
 
@@ -229,7 +224,7 @@ namespace OfficeUI.Controllers
         }
 
 
-        //Fetching messageId to deleting the message
+        //Fetching messageId to delete the message
         public async Task<IActionResult> Delete(int id)
         {
             using (HttpClient client = new HttpClient())

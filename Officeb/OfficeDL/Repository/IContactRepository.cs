@@ -9,5 +9,6 @@ namespace OfficeData.Repository
     {
         //Method Definition for ContactEntity
         void AddContact(Contactus contactUs);
+        IEnumerable<Contactus> GetContact();
     }
 }
